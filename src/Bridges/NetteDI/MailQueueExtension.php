@@ -10,11 +10,9 @@ use Nette\DI\Compiler;
 use Nette\DI\CompilerExtension;
 use Nette\Mail\IMailer;
 use Nextras\Dbal\Connection;
-use Nextras\Migrations\Bridges\NetteDI\IMigrationGroupsProvider;
-use Nextras\Migrations\Entities\Group;
 
 
-class MailQueueExtension extends CompilerExtension implements IMigrationGroupsProvider
+class MailQueueExtension extends CompilerExtension
 {
 	/** @var array */
 	public $defaults = [
@@ -78,16 +76,5 @@ class MailQueueExtension extends CompilerExtension implements IMigrationGroupsPr
 
 		$builder->getDefinition($this->prefix('queueMailer'))
 			->setAutowired(IMailer::class);
-	}
-
-
-	public function getMigrationGroups(): array
-	{
-		return [
-			new Group(
-				'mangoweb-mailqueue-structures',
-				__DIR__ . '/../NextrasMigrations/structures'
-			),
-		];
 	}
 }
