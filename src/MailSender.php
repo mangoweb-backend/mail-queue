@@ -35,7 +35,7 @@ class MailSender
 			$this->mailStorage->markSent($message->getId());
 
 			return $message->getId();
-		} catch (SendException $e) {
+		} catch (SendException|\PDOException $e) {
 			$this->mailStorage->markFailed($message->getId(), $e->getMessage());
 			throw new MailSenderException($message, $e);
 		}
