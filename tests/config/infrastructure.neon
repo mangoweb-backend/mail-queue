@@ -1,0 +1,31 @@
+extensions:
+	nextras.dbal: Nextras\Dbal\Bridges\NetteDI\DbalExtension
+	nextras.migrations: Nextras\Migrations\Bridges\NetteDI\MigrationsExtension
+	mango.tester.databaseCreator: Mangoweb\Tester\DatabaseCreator\Bridges\Infrastructure\DatabaseCreatorInfrastructureExtension
+	mango.tester.databaseCreatorInner: Mangoweb\Tester\DatabaseCreator\Bridges\NetteDI\DatabaseCreatorExtension
+	mango.tester.mailTester: Mangoweb\MailTester\Bridges\Infrastructure\MailTesterExtension
+	mango.tester.logTester: Mangoweb\Tester\LogTester\Bridges\Infrastructure\LogTesterExtension
+
+
+nextras.dbal: %dbal%
+
+
+nextras.migrations:
+	dir: '%packageRootDir%/src/Bridges/NextrasMigrations/mysql'
+	driver: mysql
+	dbal: nextras
+
+
+mango.tester.databaseCreator:
+	nextrasDbal: false
+
+
+mango.tester.databaseCreatorInner:
+	driver: mysql
+	dbal: Mangoweb\Tester\DatabaseCreator\Bridges\NextrasDbal\NextrasDbalAdapter
+	migrations: Mangoweb\Tester\DatabaseCreator\Bridges\NextrasMigrations\NextrasMigrationsDriver
+	strategy: reset
+
+
+services:
+	- Mangoweb\Tester\Infrastructure\DefaultAppConfiguratorFactory([%configDir%/app.neon, %configDir%/local.neon])

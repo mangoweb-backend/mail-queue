@@ -1,0 +1,18 @@
+extensions:
+	mail: Nette\Bridges\MailDI\MailExtension
+	nextras.dbal: Nextras\Dbal\Bridges\NetteDI\DbalExtension
+
+
+parameters:
+	dbal:
+		driver: mysqli
+		connectionTz: UTC
+		simpleStorageTz: UTC
+		debugger: false
+
+
+nextras.dbal: %dbal%
+
+
+services:
+	- Mangoweb\Tester\LogTester\TestLogger
