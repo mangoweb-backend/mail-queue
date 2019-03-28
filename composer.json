@@ -6,24 +6,23 @@
 	"version": "0.1",
 	"require": {
 		"php": "~7.1",
-		"mangoweb/cli-worker": "@dev",
-		"mangoweb/clock": "@dev",
+		"mangoweb/cli-worker": "~0.1.0",
+		"mangoweb/clock": "~0.2.0",
 		"mangoweb/exception-responsibility": "~0.0.1",
 		"nette/mail": "~2.4"
 	},
 	"require-dev": {
-		"mangoweb/tester-database-creator": "@dev",
-		"mangoweb/log-tester": "@dev",
-		"mangoweb/mail-tester": "@dev",
-		"mangoweb/tester-infrastructure": "@dev",
-		"mangoweb/nette-di-scope": "@dev",
+		"mangoweb/tester-database-creator": "~0.2.0",
+		"mangoweb/log-tester": "~0.1.0",
+		"mangoweb/mail-tester": "~0.1.0",
+		"mangoweb/tester-infrastructure": "~0.2.0",
 		"nette/tester": "~2.0",
 		"nextras/dbal": "~3.0",
 		"nextras/migrations": "~3.1@dev",
 		"psr/log": "~1.0",
 		"symfony/console": "~4.0",
 		"tracy/tracy": "~2.4",
-		"phpstan/phpstan-shim": "~0.9"
+		"phpstan/phpstan-shim": "~0.11"
 	},
 	"autoload": {
 		"psr-4": {
@@ -34,11 +33,5 @@
 		"classmap": [
 			"tests/inc"
 		]
-	},
-	"config": {
-		"preferred-install": "dist",
-		"optimize-autoloader": true,
-		"classmap-authoritative": true,
-		"bin-compat": "full"
 	}
 }
