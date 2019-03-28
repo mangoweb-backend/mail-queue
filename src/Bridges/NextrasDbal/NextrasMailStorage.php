@@ -63,7 +63,6 @@ class NextrasMailStorage implements IMailStorage
 			['last_failed_at IS NULL OR last_failed_at < DATE_SUB(%dts, INTERVAL POW(2, failure_count - 1) MINUTE)', Clock::now()],
 		]);
 
-		assert($result !== null);
 		$row = $result->fetch();
 
 		if ($row === null) {

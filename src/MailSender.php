@@ -26,15 +26,18 @@ class MailSender
 	 */
 	public function sendOne(): ?string
 	{
+		$message = $this->mailStorage->fetchUnsent();
+
+		if (!$message) {
+			return null;
+		}
+
 		try {
-			$message = $this->mailStorage->fetchUnsent();
-			if (!$message) {
-				return null;
-			}
 			$this->mailer->send($message->getMessage());
 			$this->mailStorage->markSent($message->getId());
 
 			return $message->getId();
+
 		} catch (SendException $e) {
 			$this->mailStorage->markFailed($message->getId(), $e->getMessage());
 			throw new MailSenderException($message, $e);

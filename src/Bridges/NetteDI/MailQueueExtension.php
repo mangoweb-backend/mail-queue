@@ -67,7 +67,9 @@ class MailQueueExtension extends CompilerExtension
 		$builder = $this->getContainerBuilder();
 
 		$innerMailer = $builder->getDefinitionByType(IMailer::class);
-		if ($innerMailer->getAutowired() === true || in_array(IMailer::class, $innerMailer->getAutowired(), true)) {
+		$autoWired = $innerMailer->getAutowired();
+
+		if ($autoWired === true || (is_array($autoWired) && in_array(IMailer::class, $autoWired, true))) {
 			$innerMailer->setAutowired($innerMailer->getType() === IMailer::class ? false : 'self');
 		}
 
