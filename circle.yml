@@ -8,6 +8,7 @@ jobs:
         environment:
           MYSQL_USER: root
           MYSQL_ALLOW_EMPTY_PASSWORD: true
+          MYSQL_DATABASE: app
 
     steps:
       - checkout
