@@ -5,6 +5,9 @@ jobs:
     docker:
       - image: thecodingmachine/php:7.3-v2-cli
       - image: circleci/mysql:5.7-ram
+        environment:
+          MYSQL_USER: root
+          MYSQL_ALLOW_EMPTY_PASSWORD: true
 
     steps:
       - checkout
