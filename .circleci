@@ -1,0 +1,14 @@
+version: 2
+
+jobs:
+  build:
+    docker:
+      - image: thecodingmachine/php:7.3-v2-cli
+      - image: circleci/mysql:5.7-ram
+
+    steps:
+      - checkout
+      - run: cp tests/config/local.ci.neon tests/config/local.neon
+      - run: composer install
+      - run: vendor/bin/phpstan analyse
+      - run: vendor/bin/tester -C tests
